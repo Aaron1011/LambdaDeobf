@@ -10,11 +10,18 @@ public class LambdaDeobf {
 
     @EventHandler
     public void init(FMLPreInitializationEvent event) {
-        ItemMeshDefinition handler = (p1) -> {
-            System.err.println("Called: " + p1);
+        ItemMeshDefinition handler = (stack) -> {
+            System.err.println("Called: " + stack);
             return null;
         };
         handler.getModelLocation(null);
+
+        String str = "Test";
+        ItemMeshDefinition secondHandler = (itemstack) -> {
+            System.err.println(String.format("Called: %s Capture: %s", itemstack, str));
+            return null;
+        };
+        secondHandler.getModelLocation(null);
 
     }
 }
